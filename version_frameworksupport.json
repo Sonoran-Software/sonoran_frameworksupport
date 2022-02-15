@@ -1,0 +1,6 @@
+{
+    "version": "3.1.4",
+    "check_url": "https://raw.githubusercontent.com/Sonoran-Software/sonoran_frameworksupport/main/frameworksupport/version_frameworksupport.json",
+    "download_url": "https://github.com/Sonoran-Software/sonoran_frameworksupport/",
+    "configVersion": "4.0"
+}
