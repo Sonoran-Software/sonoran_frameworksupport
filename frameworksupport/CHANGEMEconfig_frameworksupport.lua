@@ -8,7 +8,7 @@
 ]]
 local config = {
     enabled = true,
-    configVersion = "4.0",
+    configVersion = "1.0",
     pluginName = "frameworksupport", -- name your plugin here
     pluginAuthor = "SonoranCAD", -- author
     requiresPlugins = {}, -- required plugins for this plugin to work, separated by commas
