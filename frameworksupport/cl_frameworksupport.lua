@@ -10,7 +10,10 @@ CreateThread(function() Config.LoadPlugin("dispatchnotify", function(pluginConfi
 
     if pluginConfig.enabled then
         CreateThread(function()
-            local QBCore = exports['qb-core']:GetCoreObject()
+            local QBCore = nil
+            if pluginConfig.usingQBCore then
+                QBCore = exports['qb-core']:GetCoreObject()		
+            end
             PlayerData = {}
             ESX = nil
 

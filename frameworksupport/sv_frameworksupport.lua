@@ -9,7 +9,10 @@
 CreateThread(function() Config.LoadPlugin("frameworksupport", function(pluginConfig)
 
 if pluginConfig.enabled then
-    local QBCore = exports['qb-core']:GetCoreObject()
+    local QBCore = nil
+    if pluginConfig.usingQBCore then
+	QBCore = exports['qb-core']:GetCoreObject()		
+    end
     TriggerEvent("esx:getSharedObject", function(obj) ESX = obj end)
     JobCache = {}
 
