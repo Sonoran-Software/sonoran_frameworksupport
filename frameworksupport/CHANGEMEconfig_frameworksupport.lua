@@ -19,6 +19,8 @@ local config = {
     usePrefix = true,
     -- Use QBUS (a renamed ESX with some changes)? Set this to "true"
     usingQBCore = true,
+    -- Will utilize the qb-management export to send payment to the "police" fund
+    usingQBManagement = true,
 
     -- Fine payment system
     issueFines = true,                 -- Use the fine system

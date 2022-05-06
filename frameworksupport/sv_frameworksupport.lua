@@ -295,6 +295,10 @@ if pluginConfig.enabled then
                             if xPlayer.PlayerData.charinfo.lastname == citation.last then
                                 debugLog("found player online matching fined character")
                                 xPlayer.Functions.RemoveMoney('bank', citation.fine)
+                                if pluginConfig.usingQBManagement then
+                                    debugLog("sending fine to qb-management")
+                                    exports['qb-management']:AddMoney("police", citation.fine)
+                                end
                                 if pluginConfig.fineNotify then
                                     debugLog("sending fine notification")
                                     local finemessage = PlayerData.name() .. ' has been issued a fine of $' .. citation.fine
