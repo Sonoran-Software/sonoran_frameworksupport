@@ -27,7 +27,7 @@
         -- ['DEPARTMENT ABBREVIATION IN CAD   ADMIN>CUSTOMIZATION>DEPARTMENTS'] = 'qb-management_account_name'
     },
     qbNotifyFinedPlayer = true,
-    -- Placeholders $AMOUNT and $OFFICER_NAME where $AMOUNT is the fine total and $OFFICER_NAME is the Unit Name of the officer issueing the fine
+    -- Placeholders $AMOUNT and $OFFICER_NAME where $AMOUNT is the fine total and $OFFICER_NAME is the Unit Name of the officer issuing the fine
     qbFineMessage = "You have been fined $$AMOUNT by $OFFICER_NAME",
 
     -- Fine payment system
