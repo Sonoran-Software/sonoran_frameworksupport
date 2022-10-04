@@ -11,7 +11,7 @@ CreateThread(function() Config.LoadPlugin("frameworksupport", function(pluginCon
 if pluginConfig.enabled then
     local QBCore = nil
     if pluginConfig.usingQBCore then
-	QBCore = exports['qb-core']:GetCoreObject()		
+	QBCore = exports['qb-core']:GetCoreObject()
     end
     TriggerEvent("esx:getSharedObject", function(obj) ESX = obj end)
     JobCache = {}
@@ -26,26 +26,26 @@ if pluginConfig.enabled then
         if nil == params then
             return {[''] = ''}
         end
-    
+
         assert(type(params) == "table", "A table is expected")
         assert(params[1] == nil, "Parameters should not be an array, but a map (key / value pair) instead")
-    
+
         if next(params) == nil then
             return {[''] = ''}
         end
-    
+
         return params
     end
 
     function MysqlAsyncFetchAll(query, params, func)
         assert(type(query) == "string", "The SQL Query must be a string")
-    
+
         exports['mysql-async']:mysql_fetch_all(query, safeParameters(params), func)
     end
 
     function MysqlSyncFetchAll(query, params)
         assert(type(query) == "string", "The SQL Query must be a string")
-    
+
         local res = {}
         local finishedQuery = false
         exports['mysql-async']:mysql_fetch_all(query, safeParameters(params), function (result)
@@ -80,7 +80,7 @@ if pluginConfig.enabled then
             }
             callback(data)
         end
-    end    
+    end
 
     -- Helper function to get the ESX Identity object from your database/framework
     function GetIdentity(target, cb)
@@ -304,7 +304,7 @@ if pluginConfig.enabled then
                                 end
                                 if pluginConfig.fineNotify then
                                     debugLog("sending fine notification")
-                                    local finemessage = PlayerData.name() .. ' has been issued a fine of $' .. citation.fine
+                                    local finemessage = citation.first .. ' ' .. citation.last .. ' has been issued a fine of $' .. citation.fine
                                     if citation.issuer ~= '' then finemessage = finemessage .. ' by ' .. citation.issuer end
                                     TriggerClientEvent('chat:addMessage', -1, {color = { 255, 0, 0 }, multiline = true, args = { finemessage }})
                                 end
@@ -324,7 +324,7 @@ if pluginConfig.enabled then
                                 if citation.issuer ~= '' then finemessage = finemessage .. ' by ' .. citation.issuer end
                                 TriggerClientEvent('chat:addMessage', -1, {color = { 255, 0, 0 },multiline = true,args = { finemessage }})
                             end
-                        end  
+                        end
                     end
                 end)
             end

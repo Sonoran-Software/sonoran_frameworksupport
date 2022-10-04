@@ -5,7 +5,7 @@
     Creator: Sonoran Software Systems LLC
     Description: Enable using ESX or QBCore character information in Sonoran integration plugins
 ]] CreateThread(function()
-    Config.LoadPlugin("dispatchnotify", function(pluginConfig)
+    Config.LoadPlugin("frameworksupport", function(pluginConfig)
 
         if pluginConfig.enabled then
             CreateThread(function()
