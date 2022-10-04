@@ -237,7 +237,8 @@ if pluginConfig.enabled then
                 issuer = nil,   -- Issuer of the fine
                 first = nil,    -- First name of the fine target
                 last = nil,     -- Last name of the fine target
-                fine = 0        -- Total sum of all fineable offenses
+                fine = 0,        -- Total sum of all fineable offenses
+                department = nil
             }
             debugLog(record.name:upper() .. " is a fineable record.")
             -- Iterate the sections of the record
@@ -251,6 +252,7 @@ if pluginConfig.enabled then
                     -- Retrieve the new Unit Name from the Agency Information
                     if field.type == 'UNIT_NAME' then citation.issuer = field.value end
                     -- Get "Special" fields from the report
+                    if field.type == 'UNIT_DEPARTMENT' then citation.department = field.value end
                     if field.label == 'New Field Name' then
                         if field.data then
                             -- Get and store the name of the issuing officer to the citation
@@ -295,11 +297,19 @@ if pluginConfig.enabled then
                             if xPlayer.PlayerData.charinfo.lastname == citation.last then
                                 debugLog("found player online matching fined character")
                                 xPlayer.Functions.RemoveMoney('bank', citation.fine)
+                                if pluginConfig.usingQBManagement then
+                                    if pluginConfig.qbManagementAccountNames[citation.department] ~= nil then
+                                        exports['qb-management']:AddMoney(pluginConfig.qbManagementAccountNames[citation.department], citation.fine)
+                                    end
+                                end
                                 if pluginConfig.fineNotify then
                                     debugLog("sending fine notification")
                                     local finemessage = PlayerData.name() .. ' has been issued a fine of $' .. citation.fine
                                     if citation.issuer ~= '' then finemessage = finemessage .. ' by ' .. citation.issuer end
                                     TriggerClientEvent('chat:addMessage', -1, {color = { 255, 0, 0 }, multiline = true, args = { finemessage }})
+                                end
+                                if pluginConfig.qbNotifyFinedPlayer then
+                                    TriggerClientEvent('QBCore:Notify', xPlayer.PlayerData.source, pluginConfig.qbFineMessage:gsub("$AMOUNT", citation.fine):gsub("$OFFICER_NAME", citation.issuer), 'error', 5000)
                                 end
                             end
                         end
